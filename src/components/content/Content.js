@@ -9,31 +9,36 @@ class Content extends Component {
 
     this.state = {
       page: 'list', // 'list' or 'detail'
-      detailId: false,
+      detailSlug: false,
     };
   }
 
-  setPage = newPage => {
+  setPage = (newPage, detailSlug = false) => {
     this.setState({
       page: newPage,
+      detailSlug: detailSlug,
     });
   };
 
   render() {
-    const { page } = this.state;
+    const { page, detailSlug } = this.state;
+
+    console.log('STATE', this.state);
 
     return (
       <div>
         {page === 'list' && (
           <List
-            onClickHandler={() => {
-              this.setPage('detail');
+            onClickHandler={detailSlug => {
+              console.log('Clicked with this slug', detailSlug);
+              this.setPage('detail', detailSlug);
             }}
           />
         )}
 
         {page === 'detail' && (
           <Detail
+            detailSlug={detailSlug}
             onClickHandler={() => {
               this.setPage('list');
             }}

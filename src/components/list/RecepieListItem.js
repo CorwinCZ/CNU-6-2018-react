@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 class RecepieListItem extends Component {
   render() {
-    const { recepie } = this.props;
+    const { recepie, openDetail } = this.props;
 
     return (
-      <div>{`${recepie.title} - ${recepie.preparationTime} - ${
-        recepie.slug
-      }`}</div>
+      <div
+        onClick={() => {
+          openDetail(recepie.slug);
+        }}
+      >{`${recepie.title} - ${recepie.preparationTime} - ${recepie.slug}`}</div>
     );
   }
 }

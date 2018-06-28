@@ -35,10 +35,9 @@ class List extends Component {
 
     return (
       <div>
-        <button onClick={onClickHandler}>Go to detail</button>
         {loading && <div>Loading ...</div>}
         {error && <div>Some error occured, sorry!</div>}
-        {data && <RecepieList data={data} />}
+        {data && <RecepieList openDetail={onClickHandler} data={data} />}
       </div>
     );
   }
