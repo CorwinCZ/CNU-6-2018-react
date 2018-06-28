@@ -13,15 +13,32 @@ class Content extends Component {
     };
   }
 
+  setPage = newPage => {
+    this.setState({
+      page: newPage,
+    });
+  };
+
   render() {
-    console.log('Current state', this.state.page);
     const { page } = this.state;
 
     return (
       <div>
-        {page === 'list' && <List />}
+        {page === 'list' && (
+          <List
+            onClickHandler={() => {
+              this.setPage('detail');
+            }}
+          />
+        )}
 
-        {page === 'detail' && <Detail />}
+        {page === 'detail' && (
+          <Detail
+            onClickHandler={() => {
+              this.setPage('list');
+            }}
+          />
+        )}
       </div>
     );
   }

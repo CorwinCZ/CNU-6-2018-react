@@ -1,19 +1,44 @@
 import React, { Component } from 'react';
 
+import RecepieList from './RecepieList';
+
 class List extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: false,
+      loading: true,
+      error: false,
+    };
+  }
+
+  componentDidMount = () => {
+    fetch('https://cookbook.jakubricar.cz/api/recipes/')
+      .then(response => response.json())
+      .then(resData => {
+        this.setState({
+          data: resData,
+          loading: false,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error: error,
+          loading: false,
+        });
+      });
+  };
+
   render() {
+    const { onClickHandler } = this.props;
+    const { data, error, loading } = this.state;
+
     return (
       <div>
-        This is our listing component
-        <button
-          onClick={event => {
-            this.setState({
-              page: 'detail',
-            });
-          }}
-        >
-          Go to detail
-        </button>
+        <button onClick={onClickHandler}>Go to detail</button>
+        {loading && <div>Loading ...</div>}
+        {error && <div>Some error occured, sorry!</div>}
+        {data && <RecepieList data={data} />}
       </div>
     );
   }

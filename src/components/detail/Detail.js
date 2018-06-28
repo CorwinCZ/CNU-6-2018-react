@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 
 class Detail extends Component {
   render() {
+    const { onClickHandler } = this.props;
     return (
       <div>
         This is our detail component
-        <button
-          onClick={event => {
-            this.setState({
-              page: 'list',
-            });
-          }}
-        >
-          Go to list
-        </button>
+        <button onClick={onClickHandler}>Go to list</button>
       </div>
     );
   }
