@@ -23,14 +23,11 @@ class Content extends Component {
   render() {
     const { page, detailSlug } = this.state;
 
-    console.log('STATE', this.state);
-
     return (
       <div>
         {page === 'list' && (
           <List
             onClickHandler={detailSlug => {
-              console.log('Clicked with this slug', detailSlug);
               this.setPage('detail', detailSlug);
             }}
           />

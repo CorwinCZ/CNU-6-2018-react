@@ -1,13 +1,45 @@
 import React, { Component } from 'react';
 
+import Recepie from './Recepie';
+
 class Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: false,
+      loading: true,
+      error: false,
+    };
+  }
+
+  componentDidMount = () => {
+    const { detailSlug } = this.props;
+    fetch(`https://cookbook.jakubricar.cz/api/recipes/${detailSlug}`)
+      .then(response => response.json())
+      .then(resData => {
+        this.setState({
+          data: resData,
+          loading: false,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error: error,
+          loading: false,
+        });
+      });
+  };
+
   render() {
-    const { onClickHandler, detailSlug } = this.props;
-    console.log('IN DETAIL', detailSlug);
+    const { onClickHandler } = this.props;
+    const { data, error, loading } = this.state;
+
     return (
       <div>
-        This is our detail component
         <button onClick={onClickHandler}>Go to list</button>
+        {loading && <div>Loading ...</div>}
+        {error && <div>Some error occured, sorry!</div>}
+        {data && <Recepie data={data} />}
       </div>
     );
   }
