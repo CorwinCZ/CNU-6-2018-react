@@ -31,15 +31,15 @@ class Detail extends Component {
   };
 
   render() {
-    const { onClickHandler } = this.props;
+    const { redirectToListing } = this.props;
     const { data, error, loading } = this.state;
 
     return (
       <div>
-        <button onClick={onClickHandler}>Go to list</button>
+        <button onClick={redirectToListing}>Go to list</button>
         {loading && <div>Loading ...</div>}
         {error && <div>Some error occured, sorry!</div>}
-        {data && <Recepie data={data} />}
+        {data && <Recepie redirectToListing={redirectToListing} data={data} />}
       </div>
     );
   }

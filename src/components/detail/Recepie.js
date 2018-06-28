@@ -21,11 +21,26 @@ class Recepie extends Component {
     });
   };
 
+  postData = (url, data) => {
+    return fetch(url, {
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'POST',
+    }).then(response => response.json());
+  };
+
   sentUpdatedData = () => {
     console.log('Data from FETCH', this.props.data);
     console.log('DATA in state', this.state.updatedData);
     console.log('Saving!');
-    // TODO - add POST request to server
+
+    const { data, redirectToListing } = this.props;
+    const url = `https://cookbook.jakubricar.cz/api/recipes/${data._id}`;
+    this.postData(url, this.state.updatedData).then(resData => {
+      redirectToListing();
+    });
   };
 
   updateData = (field, value) => {
@@ -51,7 +66,11 @@ class Recepie extends Component {
     return (
       <div>
         <div className="bottomMargin">
-          <EditTitle title={title} isEditing={isEditing} />
+          <EditTitle
+            title={title}
+            isEditing={isEditing}
+            updateData={this.updateData}
+          />
           <button onClick={this.toggleEdit}>Edit</button>
           <button onClick={this.sentUpdatedData}>Save changes</button>
           <button>Delete</button>

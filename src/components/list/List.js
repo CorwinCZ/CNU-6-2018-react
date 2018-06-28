@@ -30,14 +30,14 @@ class List extends Component {
   };
 
   render() {
-    const { onClickHandler } = this.props;
+    const { redirectToDetail } = this.props;
     const { data, error, loading } = this.state;
 
     return (
       <div>
         {loading && <div>Loading ...</div>}
         {error && <div>Some error occured, sorry!</div>}
-        {data && <RecepieList openDetail={onClickHandler} data={data} />}
+        {data && <RecepieList openDetail={redirectToDetail} data={data} />}
       </div>
     );
   }
