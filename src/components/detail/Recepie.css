@@ -1,0 +1,19 @@
+.left {
+  text-align: left;
+  margin-left: 50px;
+}
+
+.directions {
+  float: right;
+  margin-right: 50px;
+  width: 60%;
+}
+
+.bottomMargin {
+  margin-bottom: 15px;
+}
+
+.ingredients {
+  float: left;
+  margin-left: 50px;
+}
