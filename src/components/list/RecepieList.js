@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CardGroup } from 'reactstrap';
 
 import RecepieListItem from './RecepieListItem';
 
@@ -9,15 +10,17 @@ class RecepieList extends Component {
     return (
       <div>
         This is plain list of API data:{' '}
-        {data.map((item, index) => {
-          return (
-            <RecepieListItem
-              openDetail={openDetail}
-              key={index}
-              recepie={item}
-            />
-          );
-        })}
+        <CardGroup>
+          {data.map((item, index) => {
+            return (
+              <RecepieListItem
+                openDetail={openDetail}
+                key={index}
+                recepie={item}
+              />
+            );
+          })}
+        </CardGroup>
       </div>
     );
   }
