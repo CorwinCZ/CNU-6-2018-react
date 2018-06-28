@@ -32,10 +32,6 @@ class Recepie extends Component {
   };
 
   sentUpdatedData = () => {
-    console.log('Data from FETCH', this.props.data);
-    console.log('DATA in state', this.state.updatedData);
-    console.log('Saving!');
-
     const { data, redirectToListing } = this.props;
     const url = `https://cookbook.jakubricar.cz/api/recipes/${data._id}`;
     this.postData(url, this.state.updatedData).then(resData => {

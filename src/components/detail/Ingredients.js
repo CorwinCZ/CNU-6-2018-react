@@ -15,6 +15,14 @@ class Ingredients extends Component {
         </thead>
         <tbody>
           {data.map((item, index) => {
+            if (item.isGroup) {
+              return (
+                <tr key={index}>
+                  <td>{item.name}</td>
+                  <td />
+                </tr>
+              );
+            }
             return (
               <tr key={index}>
                 <td>{`${item.amount || ''} ${item.amountUnit || ''}`}</td>
